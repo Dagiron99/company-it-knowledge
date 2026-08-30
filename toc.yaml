@@ -3,6 +3,8 @@ href: index.md
 items:
   - name: Карта ландшафта
     href: index.md
+  - name: Карта связей
+    href: generated/landscape.md
   - name: Данные
     href: data/index.md
     items:

@@ -7,12 +7,13 @@
     "node": ">=22"
   },
   "scripts": {
-    "docs:build": "yfm build -i . -o _site",
-    "docs:watch": "yfm build -i . -o _site --watch",
+    "docs:build": "python3 scripts/build_mermaid.py && yfm build -i . -o _site",
+    "docs:watch": "python3 scripts/build_mermaid.py && yfm build -i . -o _site --watch",
     "docs:serve": "http-server ./_site -p 5005"
   },
   "devDependencies": {
     "@diplodoc/cli": "5.39.4",
+    "@diplodoc/mermaid-extension": "2.0.0",
     "http-server": "14.1.1"
   }
 }

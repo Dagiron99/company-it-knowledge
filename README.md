@@ -25,7 +25,7 @@ Git является Source of Truth. Diplodoc — интерфейс для ч�
 ## Архитектура
 
 ```text
-Git → Markdown + YAML → Diplodoc → Web Portal
+Git → Markdown + YAML → Mermaid relationship map → Diplodoc → Web Portal
 Git → Markdown + YAML → AI index → future RAG / MCP / AI agents
 ```
 
@@ -49,7 +49,23 @@ available_via:
 - [`guides`](guides/index.md) — инструкции;
 - [`templates`](templates/system.md) — шаблоны сущностей;
 - [`inbox`](inbox/README.md) — недоверенные необработанные материалы;
+- [`generated/landscape.md`](generated/landscape.md) — автоматически созданная Mermaid-карта связей;
 - `dist/ai-index.json` — генерируемый AI-friendly экспорт.
+
+## Как редактируются данные и схемы
+
+Схема не является отдельным источником данных. Изменяйте только Markdown-файл сущности и его YAML front matter — например:
+
+```yaml
+source_of_truth: 1c-zup
+available_via:
+  - employee-api
+owner: hr-team
+```
+
+После этого запустите `python scripts/build_mermaid.py`. Скрипт читает проверенные связи, детерминированно обновляет [`generated/landscape.md`](generated/landscape.md), а Diplodoc отображает его как интерактивную Mermaid-схему в разделе **«Карта связей»**.
+
+Редактировать `generated/landscape.md` вручную не нужно: он должен меняться только генератором и коммититься вместе с изменением YAML. На странице выводятся три понятные проекции: потоки данных, владельцы и состав систем с интеграциями. Если связи нет в YAML, она не появится на схеме.
 
 ## Локальный запуск
 
@@ -65,11 +81,12 @@ npm install
 python scripts/validate_catalog.py
 python -m unittest discover -s tests -p 'test_*.py'
 python scripts/build_ai_index.py
+python scripts/build_mermaid.py
 npm run docs:build
 npm run docs:serve
 ```
 
-Портал будет доступен по адресу `http://localhost:5005`. Для пересборки при изменениях используйте `npm run docs:watch` в отдельном терминале. Команда Diplodoc под npm-скриптом: `yfm build -i . -o _site`.
+Портал будет доступен по адресу `http://localhost:5005`. Для пересборки при изменениях используйте `npm run docs:watch` в отдельном терминале. `npm run docs:build` автоматически обновляет Mermaid-карту перед запуском Diplodoc.
 
 ## Как внести изменения
 
@@ -104,6 +121,4 @@ Workflow `.github/workflows/catalog.yml` проверяет pull request, а pus
 ### Phase 5
 
 - knowledge graph;
-- визуализация зависимостей;
 - impact analysis: «что затронет изменение данной системы?».
-

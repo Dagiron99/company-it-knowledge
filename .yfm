@@ -1,7 +1,14 @@
 allowHtml: false
+ignore:
+  - .catalog-git/**
+  - _site/**
+  - node_modules/**
+  - .venv/**
+  - dist/**
+extensions:
+  - ./extensions/mermaid.cjs
 docs-viewer:
   lang: ru
   langs:
     - ru
   project-name: IT Knowledge Catalog
-

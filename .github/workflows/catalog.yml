@@ -50,6 +50,9 @@ jobs:
       - name: Build AI index
         run: python scripts/build_ai_index.py
 
+      - name: Generate Mermaid relationship map
+        run: python scripts/build_mermaid.py
+
       - name: Build Diplodoc site
         uses: diplodoc-platform/docs-build-static-action@v1
         with:

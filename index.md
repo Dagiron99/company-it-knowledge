@@ -32,6 +32,7 @@ Bitrix24 — Source of Truth для [сделки](data/deal.md), но не дл
 | --- | --- |
 | Где взять ФИО, отдел или руководителя сотрудника? | [Сотрудник](data/employee.md) → [Employee API](services/employee-api.md) |
 | Где лежат данные о сделках? | [Сделка](data/deal.md) → [Bitrix24](systems/bitrix24.md) |
+| Как связаны системы, данные и владельцы? | [Карта связей](generated/landscape.md) |
 | Как получить доступ к системе или API? | [Инструкция по доступу](guides/how-to-get-access.md) |
 | Кто отвечает за объект? | [Команды-владельцы](teams/index.md) или паспорт нужной сущности |
 | Как зафиксировать новое знание? | [Инструкция для авторов](guides/how-to-contribute.md) |

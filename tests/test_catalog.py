@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from scripts.build_ai_index import build_records, write_json_atomic
+from scripts.build_mermaid import build_markdown
 from scripts.catalog import errors, load_and_validate, split_front_matter
 
 
@@ -141,6 +142,17 @@ class CatalogTestCase(unittest.TestCase):
         self.assertNotIn("---", data_record["content"])
         self.assertEqual("test-system", data_record["relations"][1]["target_id"])
         self.assertEqual(data_record["metadata"]["source_of_truth"], "test-system")
+
+    def test_mermaid_map_is_deterministic_and_uses_catalog_relations(self) -> None:
+        self.write_valid_catalog()
+        entities, issues = load_and_validate(self.root)
+        self.assertEqual([], errors(issues))
+        first = build_markdown(entities)
+        second = build_markdown(list(reversed(entities)))
+        self.assertEqual(first, second)
+        self.assertIn('n_test_system -->|Source of Truth| n_test_data', first)
+        self.assertIn('n_test_data["Тестовые данные"]', first)
+        self.assertNotIn("source_of_truth: test-system", first)
 
 
 if __name__ == "__main__":

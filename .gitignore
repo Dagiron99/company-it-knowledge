@@ -1,6 +1,7 @@
 node_modules/
 dist/
 _site/
+/_assets/mermaid-extension.js
 __pycache__/
 *.py[cod]
 .venv/
