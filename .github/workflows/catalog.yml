@@ -54,10 +54,7 @@ jobs:
         run: python scripts/build_mermaid.py
 
       - name: Build Diplodoc site
-        uses: diplodoc-platform/docs-build-static-action@v1
-        with:
-          src-root: .
-          build-root: ./_site
+        run: ./node_modules/.bin/yfm build -i . -o _site
 
       - name: Add AI index to the static site
         run: cp dist/ai-index.json _site/ai-index.json
