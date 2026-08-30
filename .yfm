@@ -7,6 +7,11 @@ ignore:
   - dist/**
 extensions:
   - ./extensions/mermaid.cjs
+search:
+  enabled: true
+  provider: local
+  tolerance: 1
+  confidence: sparsed
 docs-viewer:
   lang: ru
   langs:
