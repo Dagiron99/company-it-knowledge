@@ -1,0 +1,92 @@
+name: Validate, build and publish catalog
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install Python dependency
+        run: python -m pip install -r requirements.txt
+
+      - name: Install locked Node.js dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -p 'test_*.py'
+
+      - name: Validate catalog
+        run: python scripts/validate_catalog.py
+
+      - name: Build AI index
+        run: python scripts/build_ai_index.py
+
+      - name: Build Diplodoc site
+        uses: diplodoc-platform/docs-build-static-action@v1
+        with:
+          src-root: .
+          build-root: ./_site
+
+      - name: Add AI index to the static site
+        run: cp dist/ai-index.json _site/ai-index.json
+
+      - name: Upload AI index artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-index
+          path: dist/ai-index.json
+          if-no-files-found: error
+
+      - name: Configure GitHub Pages
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

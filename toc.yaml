@@ -1,0 +1,65 @@
+title: IT Knowledge Catalog
+href: index.md
+items:
+  - name: Главная
+    href: index.md
+  - name: Системы
+    href: systems/index.md
+    items:
+      - name: Bitrix24
+        href: systems/bitrix24.md
+      - name: 1С ЗУП
+        href: systems/1c-zup.md
+      - name: Active Directory
+        href: systems/active-directory.md
+  - name: Данные
+    href: data/index.md
+    items:
+      - name: Сотрудник
+        href: data/employee.md
+      - name: Сделка
+        href: data/deal.md
+  - name: Сервисы
+    href: services/index.md
+    items:
+      - name: Employee API
+        href: services/employee-api.md
+  - name: Интеграции
+    href: integrations/index.md
+    items:
+      - name: 1С ЗУП → Bitrix24
+        href: integrations/zup-to-bitrix.md
+  - name: Команды
+    href: teams/index.md
+    items:
+      - name: Отдел автоматизации
+        href: teams/automation-team.md
+      - name: HR-команда
+        href: teams/hr-team.md
+      - name: Команда продаж
+        href: teams/sales-team.md
+  - name: Инструкции
+    href: guides/index.md
+    items:
+      - name: Как получить доступ
+        href: guides/how-to-get-access.md
+      - name: Как добавить информацию
+        href: guides/how-to-contribute.md
+  - name: Для авторов
+    items:
+      - name: Inbox
+        href: inbox/README.md
+      - name: Шаблон системы
+        href: templates/system.md
+      - name: Шаблон данных
+        href: templates/data.md
+      - name: Шаблон сервиса
+        href: templates/service.md
+      - name: Шаблон интеграции
+        href: templates/integration.md
+      - name: Шаблон команды
+        href: templates/team.md
+      - name: Метрики
+        href: METRICS.md
+      - name: AI benchmark
+        href: tests/questions.md

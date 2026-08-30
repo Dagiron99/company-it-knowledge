@@ -1,0 +1,18 @@
+{
+  "name": "company-it-knowledge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Git-based IT Knowledge Catalog rendered with Diplodoc",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "docs:build": "yfm build -i . -o _site",
+    "docs:watch": "yfm build -i . -o _site --watch",
+    "docs:serve": "http-server ./_site -p 5005"
+  },
+  "devDependencies": {
+    "@diplodoc/cli": "5.39.4",
+    "http-server": "14.1.1"
+  }
+}

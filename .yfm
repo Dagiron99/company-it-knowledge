@@ -1,0 +1,7 @@
+allowHtml: false
+docs-viewer:
+  lang: ru
+  langs:
+    - ru
+  project-name: IT Knowledge Catalog
+
