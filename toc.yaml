@@ -1,17 +1,8 @@
 title: IT Knowledge Catalog
 href: index.md
 items:
-  - name: Главная
+  - name: Карта ландшафта
     href: index.md
-  - name: Системы
-    href: systems/index.md
-    items:
-      - name: Bitrix24
-        href: systems/bitrix24.md
-      - name: 1С ЗУП
-        href: systems/1c-zup.md
-      - name: Active Directory
-        href: systems/active-directory.md
   - name: Данные
     href: data/index.md
     items:
@@ -19,6 +10,15 @@ items:
         href: data/employee.md
       - name: Сделка
         href: data/deal.md
+  - name: Системы
+    href: systems/index.md
+    items:
+      - name: 1С ЗУП
+        href: systems/1c-zup.md
+      - name: Bitrix24
+        href: systems/bitrix24.md
+      - name: Active Directory
+        href: systems/active-directory.md
   - name: Сервисы
     href: services/index.md
     items:

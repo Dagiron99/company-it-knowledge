@@ -1,0 +1,12 @@
+# Нейтральная палитра для внутреннего каталога; без фирменного стиля внешних сервисов.
+base-brand: "#2563a8"
+light:
+  table-row-background: "#f4f8fc"
+  note-info-background: "#edf6ff"
+  note-tip-background: "#eef8f2"
+  note-warning-background: "#fff7e8"
+dark:
+  table-row-background: "#1d2b3a"
+  note-info-background: "#17324b"
+  note-tip-background: "#1c382d"
+  note-warning-background: "#473618"
